@@ -1,11 +1,15 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from sqlalchemy.orm import Session
+from database import get_db
+from models import Review
 from schemas import ReviewSchema
 
 app = FastAPI()
 
 @app.get('/reviews')
-def index():
-  return []
+def reviews(db: Session = Depends(get_db)):
+  reviews= db.query(Review).all()
+  return reviews
 
 @app.post('/reviews')
 def create(review: ReviewSchema):
