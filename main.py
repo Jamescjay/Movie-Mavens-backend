@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from schemas import ReviewSchema
 
 app = FastAPI()
 
@@ -7,8 +8,9 @@ def index():
   return []
 
 @app.post('/reviews')
-def create():
-  return {}
+def create(review: ReviewSchema):
+  print(review)
+  return {'message':'Review created successfully'}
 
 @app.patch('/reviews/{reviews_id}')
 def updated_review(reviews_id: int):
