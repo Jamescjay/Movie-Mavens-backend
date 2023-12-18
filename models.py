@@ -26,11 +26,11 @@ class User(Base):
   reviews = relationship("Review", backref="user")
 
 
-class Movies(Base):
+class Movie(Base):
   __tablename__ = "movies"
 
   id = Column(Integer(), primary_key=True)
-  title = Column(Integer(), nullable=False)
-  image = Column(VARCHAR, nullable=False)
+  Title = Column(Text(), nullable=False)
+  Poster = Column(VARCHAR, nullable=False)
 
   audiences = relationship("Review", backref="movie")
